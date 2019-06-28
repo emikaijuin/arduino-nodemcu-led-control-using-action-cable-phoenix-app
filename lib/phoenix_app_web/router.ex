@@ -18,7 +18,11 @@ defmodule PhoenixAppWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/users", UserController
+    get "/signup", UserController, :new
+    resources "/users", UserController, except: [:new]
+
+    get "/login", SessionController, :new
+    delete "/logout", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.
