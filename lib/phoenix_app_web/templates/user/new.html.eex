@@ -1,0 +1,27 @@
+<div class='container'>
+  <%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
+
+    <label for="firstNameInput">
+      Email: <%= text_input f, :email %>
+    </label>
+    <%= error_tag f, :email %>
+
+    <label for="lastNameInput">
+      First Name: <%= text_input f, :first_name %>
+    </label>
+    <%= error_tag f, :first_name %>
+
+    <label for="emailInput">
+      Last Name: <%= text_input f, :last_name %>
+    </label>
+    <%= error_tag f, :last_name %>
+
+    <label for="passwordInput">
+      Password: <%= password_input f, :password %>
+    </label>
+    <%= error_tag f, :password %>
+
+    <%= submit "Submit" %>
+  <% end %>
+
+</div>
