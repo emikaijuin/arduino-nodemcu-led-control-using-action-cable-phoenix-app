@@ -1,4 +1,41 @@
-<div class='jumbotron'>
-  <h1></h1>
-  hel
+<div class='container'>
+  <ul>
+    <%= for {k,{err, _}} <- @changeset.errors do %>
+      <li>
+        <%= k %>: <%= err %>
+      </li>
+    <% end %>
+  </ul>
+  <%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
+
+    <label for="firstNameInput">
+      Email: <%= text_input f, :email %>
+    </label>
+
+    <label for="lastNameInput">
+      First Name: <%= text_input f, :first_name %>
+    </label>
+
+    <label for="emailInput">
+      Last Name: <%= text_input f, :last_name %>
+    </label>
+
+    <label for="passwordInput">
+      Password: <%= password_input f, :password %>
+    </label>
+
+    <%= submit "Submit" %>
+  <% end %>
+  <%# <form action="/users" method="POST">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form> %>
 </div>
