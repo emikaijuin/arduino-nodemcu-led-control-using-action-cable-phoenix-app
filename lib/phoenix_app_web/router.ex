@@ -22,7 +22,8 @@ defmodule PhoenixAppWeb.Router do
     resources "/users", UserController, except: [:new]
 
     get "/login", SessionController, :new
-    delete "/logout", SessionController, :delete
+    post "/login", SessionController, :create
+    delete "/logout/:id", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.

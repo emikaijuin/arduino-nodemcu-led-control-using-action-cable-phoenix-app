@@ -6,8 +6,7 @@ defmodule PhoenixApp.Auth.Guardian do
   alias PhoenixApp.User
 
   def subject_for_token(user, _claims) do
-    sub = to_string(user.id)
-    {:ok, sub}
+    {:ok, user.email}
   end
 
   def subject_for_token(_, _) do
@@ -15,8 +14,8 @@ defmodule PhoenixApp.Auth.Guardian do
   end
 
   def resource_from_claims(claims) do
-    id = claims["sub"]
-    user = PhoenixApp.get(User, id)
+    email = claims["sub"]
+    user = PhoenixApp.get_by(User, email: email)
     {:ok, user}
   end
 
