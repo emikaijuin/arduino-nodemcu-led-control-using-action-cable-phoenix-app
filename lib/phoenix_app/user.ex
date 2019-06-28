@@ -1,6 +1,7 @@
 defmodule PhoenixApp.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias PhoenixApp.Repo
 
   schema "users" do
     field :confirmation_token, :string
@@ -14,9 +15,24 @@ defmodule PhoenixApp.User do
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset(user, attrs \\ %{}) do
     user
-    |> cast(attrs, [:first_name, :last_name, :email, :password_digest, :confirmation_token, :remember_token])
-    |> validate_required([:first_name, :last_name, :email, :password_digest, :confirmation_token, :remember_token])
+    |> cast(attrs, [
+      :first_name,
+      :last_name,
+      :email,
+      :password_digest,
+      :confirmation_token,
+      :remember_token
+    ])
+    |> unsafe_validate_unique(:email, Repo)
+    |> validate_required([
+      :first_name,
+      :last_name,
+      :email,
+      :password_digest,
+      :confirmation_token,
+      :remember_token
+    ])
   end
 end
