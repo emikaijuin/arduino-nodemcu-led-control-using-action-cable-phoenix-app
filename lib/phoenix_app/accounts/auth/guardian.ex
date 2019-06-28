@@ -3,7 +3,6 @@ defmodule PhoenixApp.Auth.Guardian do
 
   use Guardian, opt_app: :phoenix_app
 
-  alias PhoenixApp.Accounts
   alias PhoenixApp.User
 
   def subject_for_token(user, _claims) do
