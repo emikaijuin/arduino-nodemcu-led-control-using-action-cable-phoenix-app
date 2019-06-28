@@ -1,3 +1,3 @@
-defmodule PhoenixApp.SessionView do
+defmodule PhoenixAppWeb.SessionView do
   use PhoenixAppWeb, :view
 end
