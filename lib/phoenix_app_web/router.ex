@@ -14,7 +14,7 @@ defmodule PhoenixAppWeb.Router do
   end
 
   scope "/", PhoenixAppWeb do
-    pipe_through :browser
+    pipe_through [:browser, :auth]
 
     get "/", PageController, :index
 
@@ -30,4 +30,9 @@ defmodule PhoenixAppWeb.Router do
   # scope "/api", PhoenixAppWeb do
   #   pipe_through :api
   # end
+
+  # Auth pipeline
+  pipeline :auth do
+    plug(PhoenixApp.Auth.AuthAccessPipeline)
+  end
 end
