@@ -28,7 +28,12 @@ config :phoenix, :json_library, Jason
 # Configures Guardian
 config :phoenix_app, PhoenixApp.Auth.Guardian,
   issuer: "phoenix_app",
-  secret_key: System.get_env("APP_SECRET_KEY")
+  secret_key: "QnK5o/xYzYmi2CNSx1ki+t8rHiBz43ttuVmipNhPUirNgxZOru9xM1YIFC4I3WJw"
+
+# Configure Authentication Pipeline
+config :phoenix_app, PhoenixApp.Auth.AutheAccessPipeline,
+  module: PhoenixApp.Auth.Guardian,
+  error_handler: PhoenixApp.Auth.AuthErrorHandler
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
